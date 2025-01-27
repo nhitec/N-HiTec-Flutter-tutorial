@@ -1,0 +1,67 @@
+\section{Tour d'horizon de Flutter}
+
+\subsection{Dart}
+\par $\bullet$ Dart est le langage de programmation que vous utiliserez pour travailler avec Flutter. Sa documentation est extensive, mais nous allons découvrir ensemble quelques détails important, pour programmeur confirmé, comme débutant.\\
+Notez que la convention d'écriture utilisé pour le code ici et le \textbf{CamelCase}, comme souvent en OOP.
+
+\subsection{Widgets}
+\par $\bullet$ Les Widgets représentent, en large, tout ce que vous pouvez voir/interragir avec à l'écran. Il s'agit évidemment d'un partie très  importante de votre application : le visuel c'est important ! Avoir un interface intuitive et agréable aussi.\\
+Il en existe énormément, que je vous invite à explorer par vous même. Ici, on se contentera de voir leurs caractéristiques générales, et les exemples plus importants.
+
+\subsubsection{Comment utiliser un widget}
+\par $\bullet$ Chaque Widget est associé une liste de paramètres, qui définiront les caractéristiques de votre widget : sa couleur, sa taille, sa position à l'écran, ou encore son comportement lorsque qu'on intéragit avec de telle ou telle manière.\\
+Ces paramètres demandent soit un objet d'une classe spécifique (ou qui hérite de cette classe), soit une fonction, que vous pouvez définir directement, appeller une fonction ou méthode existante.
+
+\subsubsection{Les paramètres children, child et body}
+\par $\bullet$ Ces paramètres permettent d'indiquer qu'un Widget contient lui même un autre Widget. Si un Widget est affiché, tout les widgets qu'il contient le sont également.\\
+\textbf{child} et \textbf{body} sont rigoureusement identiques, mais \textbf{children} lui permet de définir une liste entière de Widgets, (Column et Row sont de bon exemples).
+
+\subsubsection{StatelessWidget}
+\par $\bullet$ Les \textbf{StatelessWidget} sont tous les Widgets qui ne changeront durant l'utilisation de votre application. Une fois construits, ils ne changent pas, et ce, même si ils utilisent des données variables. Pour le forcer à se reconstruire, il faut soit le détruire et le reconstruire (par exemple en quittant la page), soit \textit{utiliser une autre technique que nous verrons plus tard}. \\
+Ils sont principalment utilisés pour les éléments statiques, comme des titres, des images, etc.
+
+\subsubsection{StatefulWidget}
+\par $\bullet$ Les \textbf{StatefulWidget}, au contraire des \textit{StatelessWidget}, peuvent voir leur \textbf{état} changer au cours de l'utilisation de l'app, par exemple parce que vous avez appuyé sur un bouton ou entrez du texte. Ils sont intéressant pour tout ce qui est interactif ou évolue dans le temps, comme la barre de progression d'une vidéo, ou un bouton qui change quand on appuie dessus, des sliders, des menus déroulants
+
+\subsubsection{Définir ses propres Widgets}
+\par $\bullet$ Il arrivera que aucun Widget existant ne correpsondent vraiment à vos besoins, et qu'en plus, vous ayez besoin de le réutiliser à plusieurs endroit. Ce n'est pas grave, vous pouvez créer vous même vos propres Widgets :
+\begin{itemize}
+  \item Créez une nouvelle classe (de préférence dans son propre fichier)
+  \item Déclarez là de la façon suivante : \textbf{class [nom du widget] extends StatelessWidget/StatefulWidget}
+\end{itemize}
+
+\par $\bullet$ A partir d'ici, 2 options s'offrent à vous :
+\begin{itemize}
+  \item Si vous utilisez un \textit{StatelessWidget}, vous pouvez directement déclarer la méthode suivante : \textbf{@override Widget build (BuildContext context)}.
+
+  \item Si vous utilisez un \textit{StatefulWidget}, les choses sont un peu plus compliquées. Il vous faut une classe StatefulWidget, qui sera le widget en lui meme, et une classe State<>, qui contiendra l'état du Widget et la méthode build.
+\end{itemize}
+
+\par $\bullet$ La méthode \textit{build} que vous avez déclaré est très importante : \textbf{elle définit comment construire votre Widget}, à partir de Widget existants, définis par vous-même ou non. La méthode s'attend à ce que vous retourniez un widget, Vous l'aurez compris, la plupart des Widgets sont des assemblages d'autres widgets.
+
+\subsubsection{Widgets bons à connaître}
+\par $\bullet$ Cette liste n'est pas exhaustive, bien entendu, et sera allongée au fur et à mesure.
+\begin{itemize}
+  \item Scaffold
+  \item Column et Row
+\end{itemize}
+
+\subsection{Packages}
+\par $\bullet$ Les packages sont des librairies extérieures, non officielles pour la plupart, qui vous apporteront des fonctionnalités et Widgets supplémentaires. L'avantage est que la plupart d'entre eux sont fort bien documenté. Mais faites tout de même attention à ne pas prendre n'importe lequel ! Regardez le nombre d'installations, et faites des recherches supplémentaires pour voir si il est fréquemment utilisé. \\
+Tout particulièrement, \textbf{faîtes attention avec quelle plateforme le package est compatible !}. Certains marchent sur toutes les plateformes, mais la plupart ne marchent que sur le web, d'autres que sur Androïd et iOS, ou que sur MacOS, etc. Si il n'est pas compatible avec la plateforme sur laquelle vous travaillez, pas la peine "d'essayer juste au cas où", au mieux votre code ne compilera pas, et au pire il compile ... avec plus d'un problème caché.
+
+\subsection{Dépendences et pubspec.yaml}
+\par $\bullet$ Tous les packages sont définis dans le fichier \textbf{pubspec.yaml}
+
+\subsection{Tester votre app}
+\begin{itemize}
+  \item La manière la plus simple est, dans un terminal, de se rendre dans le dossier de votre app et d'entrer "\textbf{flutter run}".
+  \item Si vous utilisez Visual Studio Code, rendez dans le fichier qui contient la fonction \textit{main()} - généralement \textit{main.dart} - et appuyez sur le petit bouton "play" en haut à droite. Vous aurez alors une barre avec un bouton "stop" pour arrêter l'app, et un bouton "reload" pour redémarrer depuis le début de votre code.
+  \item \textbf{flutter run -d web-server} : vous permet de lancer l'app dans un navigateur. La commande vous demandera peut être de choisir quelle navigateur vous souhaitez utiliser, après quoi soit l'app s'ouvrira directement sur votre navigateur, soit elle vous donnera une addresse en \textit{localhost} que vous pourrez cliquer. Attention, pour voir les changements dans votre code, il faudra recharger la page.
+\end{itemize}
+
+\subsection{Hot reload}
+\par $\bullet$ Si vous voulez voir un changement que vous faites dans votre code, pas besoin de fermer l'app : quand vous sauvegarderez votre fichier modifié, les changements seront automatiquements appliqués - sauf si il y a des erreurs syntaxiqyes dans le fichier. Attention, ça ne vous protège pas des erreurs de sémantique ou de logique : vous devez savoir ce que vous faites !
+
+\subsection{Installer l'app sur votre téléphone}
+\par $\bullet$ La commande \textbf{flutter build apk} vous donnera un fichier .apk, qui est une application utilisable sur Android. Transférez ce fichier sur votre téléphone - peu importe comment -  et lancez le. Attention, vous aurez des avertissements de sécurité car votre app ne vient pas de l'appstore, mais vous pouvez les ignorez sans problèmes.

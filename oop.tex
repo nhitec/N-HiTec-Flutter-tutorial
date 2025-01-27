@@ -1,0 +1,90 @@
+\section{Programmation orientée objet}
+\par $\bullet$ Avant d'aller plus loin, il faut s'assurer que nous parlons le même langage. Cette section va donc faire un cours \textbf{extrêmement} condensé de ce qu'est la programmation orienté object (Object Oriented Programming, OOP). \\
+
+Si vous vous y connaissez déjà, où préferez vous concentrer sur Flutter en lui-même vous pouvez passer votre chemin et avancer à la section suivante, mais un rappel ne vous fera pas de mal, si ? \\
+
+Ce cours express se base en très grosse partie sur le \textbf{cours de Bernard Boigelot INFO0062 - Object Oriented Programming (LIEN)}. Ce cours utilise \textit{Java} et non \textit{Dart}, mais \textit{Dart} étant fortement inspiré de \textit{Java}, cela ne devrait pas vous déranger trop.
+
+\subsection{Concept de base}
+\par $\bullet$ L'\textbf{Object Oriented Programming}, que nous allons abrévier en \textbf{OOP}, n'est simplement qu'une facon de voir un programme. Ici, un programme est vu comme un ensemble d'\textbf{objets} qu interagissent entre eux en se demandant l'un l'autre d'effectuer certaine tâches, une petit équipe qui assure le bon fonctionnement de votre programme.
+
+\par $\bullet$ Pour faire une analogie, un programme OOP est comme un restaurant : chaque employé a une tâche définie et se contente de faire sa tâche assignée, dans laquelle il est spécialisé. Si vous avez besoin de quelque chose auquel vous n'êtes par formé, demandez à l'employé qui en est chargé. On aurait jamais l'idée d'envoyer la femme de ménage faire la cuisine ou le barman faire les comptes, non ? Dans votre programme OOP c'est pareil, chaque objet fait sa tâche et fait une requête à un ou plusieurs autre objets si il a besoin de quelque chose qu'il ne saît pas faire.
+
+\par $\bullet$ De ce fait, en OOP, on mets l'accent sur la modularité, c'est à dire d'avoir des fonctionnalités très indépendantes des unes des autres, ce qui permet de  :
+\begin{itemize}
+  \item Facilement séparer les différentes parties du code qui correspondent aux grandes idées de votre programme ou application.
+
+  \item Déveloper une partie d'un programme sans se soucier de savoir ce qui se passe dans d'autres parties.
+
+  \item Changer une partie d'un programme sans affecter les autres parties
+
+  \item Réutiliser des morceaux de code ailleurs dans le programme, ou même dans un autre programme
+
+  \item L'idée générale étant de rendre vos morceaux de codes aussi indépendants que possible tout en leur permettant d'aisément fonctionner ensemble.
+
+\end{itemize}
+
+\par $\bullet$ Attention : l'OOP est une vision spécifique de la programmation, indépendante du langage utilisé. Des langages comme \textit{Dart} ou \textit{Java} y sont dédiés, mais vous pouvez appliquer les concepts de l'OOP dans d'autre langage qui n'y sont pas entièrement dédié, comme \textit{Python}, \textit{C++} ou \textit{PHP}, voir pas du tout comme \textit{C}, \textit{Scala} ou \textit{Golang} (même si évidemment c'est moins recommandé).
+
+\subsection{Classes et objets}
+
+\par $\bullet$ Pour l'instant on a appris à séparer des bouts de code dans des fichiers. Rien de très nouveau ou surprenant, donc qu'est-ce qui distingue vraiment l'OOP ? \\
+
+Ce sont les concepts de \textbf{classes} et \textbf{d'objets}. \\
+
+\par $\bullet$ Un \textbf{object} est une structure de donnés mêlant à la fois des variables, pour retenir des données, mais aussi des fonctions qu'il peut exécuter, appelées \textbf{méthodes}.
+
+\par $\bullet$ Une \textbf{classe} spécifie un objet. Elle définit ses variables et ses méthodes, mais aussi des \textbf{constructeurs}, qui permettent de créer cet object - on dit alors que l'on \textbf{instancie} la classe, que l'on crée \textbf{une instance} de cette classe. Plus important, la classe permet la séparation entre \textbf{l'implémentation}, c'est à dire ce qu'un objet peut faire ou pas, et \textbf{l'interface}, comment utiliser cet object, intéragir avec.
+
+\par $\bullet$ Point important : une classe peut être instanciée en autant d'object que l'on veut, mais \textbf{un objet ne peut avoir q'une seule classe}.
+
+\subsection{Principe d'encapsulation}
+\par $\bullet$ La bonne pratique veut que l'on puisse intéragir avec un object qu'à travers son interface. Bien que dans beacoup de cas pouvoir accès directement aux variables d'un autre objet soit pratique - et très courant en pratique - le fait de limiter cet accès permet de garantir les aspects de sécurité, par example en vérifiant les valeurs passées en arguments.\\
+
+A cet effet, les variables, méthodes et constructeurs d'une classe peuvent avoir un niveau de visibilité :
+\begin{itemize}
+  \item \textbf{Publique}, n'importe qui peut avoir accès à cette variable/méthode/constructeur.
+  \item \textbf{Protégé}, seul les objets de la même classe ou d'une sous classe peuvent avoir accès à cette variable/méthode/constructeur.
+  \item \textbf{Privé}, seul cet object peut avoir accès à cette variable/méthode/constructeur.
+\end{itemize}
+
+\newpage
+\subsection{Héritage de classe}
+\par $\bullet$ Imaginons que vous êtes engagés pour développer une application permettant la gestion du personnel d'un hôpital. Cet hôpital emploie bien des gens de fonctions diverses. Par exemple vous avez des chirurgiens et des cardiologues. Naturellement, vous créez une classe pour chacun, mais vous rendez compte rapidement qu'elles ont beaucoup de code en commun, voir identique. Il serait bien de pouvoir mettre ce code en un seul point où nos deux classes peuvent y avoir aisément accès.\\
+
+Si on y pense bien, chirurgien et cardiologue sont tous les deux des médecins.
+
+\par $\bullet$ C'est pourquoi nous allons définir un troisième classe, la \textbf{superclasse} "Médecin" qui regroupe les points communs de "Chirurgien" et "Cardiologue" en seul point. Ensuite, il suffit de spécifier que "Chirurgien" et "Cardiologue" sont des \textbf{sous-classes} de "Médecin" pour qu'elles puissent toutes les deux avoir accès au code de médecin, comme si il l'avaient aussi.
+
+On dit que "Médecin" est un \textbf{superclasse}, une \textit{généralisation}, alors que "Chirurgien" et "Cardiologue" sont des \textbf{sous-classes}, des \textit{spécialisations}. des cas plus spécifiques. "Chirurgien" et "Cardiologue" \textbf{héritent} de "Médecin".
+
+\par $\bullet$ Attention, une \textit{superclasse} peut avoir autant de sous classes que désiré, mais une \textit{sous-classe} \textbf{ne peut avoir qu'une seule et unique superclasse}.
+
+\par $\bullet$ Mais dans notre hôpital d'exemple, il y aussi des employés qui ne sont pas médecins, comme les gardes, les infirmière, les ambulanciers, etc. On peut alors avoir une \textit{super-classe} "Employé" pour englober tout ça. Donc bien qu'un \textit{classe} ne peut avoir qu'une seule \textit{super-classe} directe, elle hérite aussi des \textbf{super classes} plus haut dans la hiérarchie. Voyez ça comme un arbre généalogique.
+
+\par $\bullet$ Remarque : \textbf{une sous classe doit pouvoir remplir les mêmes rôles que sa super-classe}. Si j'ai une fonction qui prend en entrée une \textit{objet} de \textit{classe} "Médecin", je dois pouvoir utiliser cette fonction sans problème avec un \textit{objet} de \textit{classe} "Chirurgien" ou "Cardiologue".
+
+\newpage
+\subsection{Classes et méthodes abstraites}
+
+\par $\bullet$ Changeons encore d'exemple. Vous développez un logiciel de dessin simple, comme Paint, et vous souhaitez pouvoir dessiner des rectangles et des cercles. Vous créez naturellement les classes "Rectangle" et "Circle", et leur attribuez la \textit{méthode} \textit{draw()}, qui prend en entrée une couleur.\\
+
+Vous vous dîtes que, puisque que les 2 classes ont une méthode \textit{draw()}, il serait sage de créer une \textit{super-classe} "Shape" ou mettre cet méthode. Mais il y un os : on ne dessine pas un rectangle de la même manière qu'un cercle. On utilise pas les même informations. De ce fait, vous ne pouvez pas déplacer cette \textit{méthode} dans une \textit{super-classe} !
+
+\par $\bullet$ Le problème ici, est que nous avons la même \textit{interface}, c'est à dire la même utilisation, mais pas la même \textit{implémentation}, c'est à dire le comportement.\\
+
+Pour remédier à ce problème, nous avons en OOP les \textbf{classes abstraites}. Une \textit{classe abstraite} permet de définir \textit{l'interface} d'une méthode \textbf{sans} définir son \textit{implémentation}. On parle alors de \textbf{méthode abstraite}.\\
+
+Réglons notre problème : définissons la \textbf{classe abstraite} "Shape" avec la \textbf{méthode abstraite} \textit{draw()}, prenant en entrée une couleur. Puis, définissons les \textit{sous classes} "Rectangle" et "Circle" avec pour \textit{super-classe} "Shape", ce qui leur permet de définir le code de la \textit{méthode} \textit{draw()} différemment l'un de l'autre.
+
+\par $\bullet$ Remarques :
+\begin{itemize}
+  \item Les classes abstraites peuvent aussi définir des méthodes normales dont leurs sous classes hériteront.
+
+  \item Attention, les sous classes qui héritent d'une classe abstraite \textbf{sont obligées d'implémenter ses méthodes abstraites}.
+
+  \item Il n'est pas une bonne idée d'avoir une classe abstraite qui hérite d'une classe normale. Pourquoi ?
+
+\end{itemize}
+
+\par Une autre méthode pour remédier et le mot-clé \textbf{@override}. Quand placé devant une \textit{méthode} que vous héritez, avec la même interface, vous indiquez que vous remplacez l'implémentation de cette \textit{méthode} par celle que vous allez définir ici.

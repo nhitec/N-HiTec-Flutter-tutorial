@@ -1,0 +1,160 @@
+\section[Installation de Flutter]{Installation de Flutter \includegraphics[height=15pt]{figures-logos/flutter.pdf}}
+
+\par $\bullet$ \textbf{NE PAS INSTALLER DART SEPAREMENT DE FLUTTER. SI VOUS INSTALLEZ FLUTTER, IL SE CHARGE D'INSTALLER DART}
+\par $\bullet$  \href{https://docs.flutter.dev/get-started/install}{Cliquez ici} pour le guide officiel d'installation, sur lequel nous nous baserons.
+
+Choisissez la section correspondant à votre système d'exploitation:
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}{0.32\textwidth}
+    \centering
+    \hyperref[sec:installation_linux]{\includegraphics[scale=0.05]{Images_formation/LinuxLogo.pdf}}
+    \caption*{\underline{Linux}: \textsc{section~\ref{sec:installation_linux}}}
+  \end{minipage}
+  \begin{minipage}{0.32\textwidth}
+    \centering
+    \hyperref[sec:installation_windows]{\includegraphics[scale=0.020]{Images_formation/WindowsLogo.pdf}}
+    \caption*{\underline{Windows}: \textsc{section~\ref{sec:installation_windows}}}
+  \end{minipage}
+  \begin{minipage}{0.32\textwidth}
+    \centering
+    \hyperref[sec:installation_macos]{\includegraphics[scale=0.025]{Images_formation/MacosLogo.pdf}}
+    \caption*{\underline{MacOS}: \textsc{section~\ref{sec:installation_macos}}}
+  \end{minipage}
+\end{figure}
+\subsection[Installation Linux]{Installation \linux{}\label{sec:installation_linux}}
+
+\par Etant donné la diversité des distributions Linux, nous n'allons ici couvrir que la plus commune : \textbf{Ubuntu}, plus précisément \textbf{Ubuntu 22.04}. \\
+Si vous utilisez une autre distribution, l'installation devrait  être identique en majeure partie.
+
+\begin{enumerate}
+  \item Pour commencer, ouvrez votre terminal et vérifiez que ces différents outils sont installés: \texttt{bash}, \texttt{file}, \texttt{mkdir}, \texttt{rm}, \texttt{which} grâce à la commande
+
+    \vspace{0.3cm}
+    \begin{lstlisting}
+                which bash file mkdir rm which
+    \end{lstlisting}
+    \vspace{0.2cm}
+
+  \item Mettez à jour la liste des packages:
+
+    \vspace{0.3cm}
+    \begin{lstlisting}
+                sudo apt-get update -y && sudo apt-get upgrade -y
+    \end{lstlisting}
+    \vspace{0.2cm}
+
+  \item Installez les packages suivants: \texttt{curl}, \texttt{git}, \texttt{unzip}, \texttt{xz-utils}, \texttt{zip}, \texttt{libglu1-mesa}
+
+    \vspace{0.3cm}
+    \begin{lstlisting}
+                sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+    \end{lstlisting}
+    \vspace{0.2cm}
+
+  \item Pour les applications Android, nous avons besoin d'\texttt{Android Studio}. Installez donc donc les packages prérequis suivants:
+
+    \vspace{0.3cm}
+    \begin{lstlisting}
+                sudo apt-get install \
+                libc6:amd64 libstdc++6:amd64 \
+                libbz2-1.0:amd64 libncurses5:amd64
+    \end{lstlisting}
+    \vspace{0.2cm}
+
+  \item Cliquez \href{https://developer.android.com/studio?hl=fr}{ici} pour télecharger la dernière version d'\texttt{Android Studio}.\\
+
+  \item Décompressez le fichier .zip téléchargé vers un emplacement approprié pour vos applications (par exemple, dans /usr/local/ pour votre profil utilisateur ou /opt/ pour les utilisateurs partagés).\\
+
+  \item Pour lancer \texttt{Android Studio}, accédez au répertoire android-studio/bin/, puis exécutez:
+
+    \vspace{0.3cm}
+    \begin{lstlisting}
+                studio.sh
+    \end{lstlisting}
+    \vspace{0.2cm}
+
+  \item Indiquez si vous souhaitez importer les anciens paramètres Android Studio, puis cliquez sur \textbf{OK}.\\
+
+  \item Suivez l'\textbf{assistant de configuration} d'\texttt{Android Studio} (ce qui implique de télécharger les composants du SDK Android requis pour le développement).\\
+
+  \item Ouvrez un terminal, et entrez:
+
+    SURTOUT PAS SNAP
+    \begin{lstlisting}
+                sudo snap install flutter --classic
+    \end{lstlisting}
+
+  \item Tapez \textbf{flutter} pour finir l'installation.
+
+\end{enumerate}
+
+\bigskip
+
+\hyperref[sec:suite_installation]{Pour passer à la suite}
+\newpage
+
+\subsection[Installation Windows]{Installation windows \label{sec:installation_windows}}
+% \subsubsection{Via Visual Studio Code}
+%     \begin{itemize}
+%         \item \textbf{Attention, vous devez avoir Windows 10 ou autre Windows plus récent !}
+
+%         \item Choisissez l'installation Windows, puis Android.
+
+%         \item Installez Visual Studio Code, un éditeur de code fort pratique, grâce à \href{https://code.visualstudio.com/docs/setup/windows}{ce guide}.
+
+%         \item Lancez VSCode, et dans la barre à gauche, cliquez sur "\textit{Extensions}.
+
+%         \item Cherchez "\textit{flutter}", et installez la 1ère extension de la liste (elle s'appelle juste "Flutter".
+
+%         \item Faites CTRL + SHIFT + P, et tapez dans la barre "\textit{flutter}". Cliquez sur "\textit{Flutter : New Project}.
+
+%         \item VSCode vous informe qu'il ne trouve le Flutter SDK : cliquez sur "\textit{Download SDK}".
+
+%         \item Votre explorateur de dossiers s'ouvre, choisissez un dossier ou installer Flutter. \textbf{N'installez pas dans un dossier cotnenant des espaces ou des charactèrs spéciaux dans son nom, ni un dossier avec des autorisations d'accès.} \\
+%         \textit{C:$\backslash$Users$\backslash$[votre\_nom\_utilisateur]} est un bon choix.
+
+%     \end{itemize}
+
+\subsubsection{Via téléchargement}
+
+\begin{enumerate}
+
+  \item \textbf{Attention, vous devez avoir Windows 10 ou plus récent !}
+
+  \item Choisissez l'installation Windows, puis Android.
+
+  \item Téléchargez le fichier \textbf{"flutter\_window\_[version].zip"}.
+
+  \item Déplacez le dans "\textbf{C:$\backslash$Users$\backslash$[votre\_nom\_utilisateur]}".
+
+  \item Créez dans \textbf{"C:$\backslash$Users$\backslash$[votre\_nom\_utilisateur]"} un dossier \textbf{"dev"}, et déplacez-y le fichier .zip. Extrayez les fichiers. Normalement un dossier du même nom a été créé, avec à l'intérieur un dossier "\textit{flutter"}.
+
+  \item (Redéplacez ce dernier dans \textbf{"C:$\backslash$Users$\backslash$[votre\_nom\_utilisateur]"}).
+
+  \item Rendez vous dans le dossier "\textit{flutter}" puis "\textit{bin}".
+
+  \item Copiez le chemin de fichiers au dessus.
+
+  \item Tapez "var" dans la barre de recherche Windows, et cliquez sur le 1er résulat \textbf{"Modifier les variabled d'environnement du système"}.
+
+  \item Allez sur \textbf{"Paramètres systèmes avancés"}, puis \textbf{"Variables d'environnement"}.
+
+  \item Dans la partie \textbf{"Variables utilisateur pour [votre\_nom\_utilisateur]"}, cliquez sur la variable \textbf{"Path"}, puis "Modifier".
+
+  \item Cliquez sur "Nouveau", et collez le chemin de fichier que vous avez copié plus tôt. Puis cliquez sur "Déplacer vers le haut".
+
+  \item Cliquez sur "OK" dans chaque fenêtre. Si vous vous contenter de les fermer avec la croix, les changements ne seront pas pris en compte.
+
+  \item Tapez dans la barre de recherche Windows "cmd", et cliquez sur \textbf{"Invité de commandes"}.
+
+  \item Entrez la commande \textbf{"flutter --version"}. Si vous voyez bien la version de Flutter, vous avez correctement installé Flutter.
+    % Attention, ce n'est pas fini ! Il y a encore d'autres choses à installer !
+
+\end{enumerate}
+
+\subsection[Installation Mac]{Installation macos \label{sec:installation_macos}}
+
+\subsection{En plus\label{sec:suite_installation}}
+

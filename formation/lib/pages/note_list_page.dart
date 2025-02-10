@@ -24,29 +24,52 @@ class _NoteListPageState extends State<NoteListPage> {
         tooltip: 'Nouvelle note',
         child: const Icon(Icons.add),
       ),
-      body: provider.notes == null
-          ? const Center(child: CircularProgressIndicator())
-          : provider.notes!.isEmpty
-              ? const Center(child: Text('Aucune note pour le moment'))
-              : ListView.builder(
-                  padding: const EdgeInsets.all(20),
-                  itemCount: provider.notes!.length,
-                  itemBuilder: (ctx, index) {
-                    Note note = provider.notes![index];
-                    return _buildNote(context, note);
-                  }),
+      body: Stack(
+        children: [
+          // Logo en arrière-plan
+          Center(
+            child: Opacity(
+              opacity: 0.5,
+              child: Image.asset(
+                'assets/images/Logo.png',
+                width: 200,
+              ),
+            ),
+          ),
+          // Liste des notes
+          provider.notes == null
+              ? const Center(child: CircularProgressIndicator())
+              : provider.notes!.isEmpty
+                  ? const Center(child: Text('Aucune note pour le moment'))
+                  : ListView.builder(
+                      padding: const EdgeInsets.all(20),
+                      itemCount: provider.notes!.length,
+                      itemBuilder: (ctx, index) {
+                        Note note = provider.notes![index];
+                        return _buildNote(context, note);
+                      }),
+        ],
+      ),
     );
   }
 
   Future<void> _newNote(NoteDatabaseProvider provider) async {
     DateTime now = DateTime.now();
     Note newNote = Note(creationDate: now, title: 'Nouvelle note');
-    provider.addNote(newNote);
+    await provider.addNote(newNote);
+
+    if (!mounted) return; // Vérification nécessaire après le await
+
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => NoteEditPage(note: newNote),
+      ),
+    );
   }
 
   Widget _buildNote(BuildContext context, Note note) {
     final ThemeData theme = Theme.of(context);
-    final ColorScheme colorScheme = theme.colorScheme;
+    const nhitecRed = Color(0xFFC11B17);
 
     return GestureDetector(
       onTap: () {
@@ -58,7 +81,7 @@ class _NoteListPageState extends State<NoteListPage> {
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: colorScheme.secondaryContainer,
+          color: nhitecRed.withAlpha(85),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

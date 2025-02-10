@@ -35,11 +35,15 @@ class MyApp extends StatelessWidget {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colorScheme.surface,
       appBarTheme: AppBarTheme(
-        backgroundColor: nhitecRed.withAlpha(150),
+        backgroundColor: brightness == Brightness.light
+            ? nhitecRed.withAlpha(200)
+            : nhitecRed.withAlpha(150),
         foregroundColor: nhitecLight,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: nhitecRed.withAlpha(150),
+        backgroundColor: brightness == Brightness.light
+            ? nhitecRed.withAlpha(200)
+            : nhitecRed.withAlpha(150),
         foregroundColor: nhitecLight,
       ),
       textTheme: TextTheme(
